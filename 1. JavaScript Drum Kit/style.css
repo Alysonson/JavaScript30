@@ -1,0 +1,31 @@
+html {
+  background: url(./imagem.jpg);
+}
+.chaves {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.chave {
+  font-size: 1.5rem;
+  margin: 1rem;
+  padding: 1rem 0.5rem;
+  border: solid 4px black;
+  text-align: center;
+  transition: all 0.07s;
+  background: rgba(121, 153, 235, 0.5);
+}
+.apertar {
+  transform: scale(1.1);
+  border-color: #ffc600;
+}
+kbd {
+  display: block;
+  color: white;
+}
+.sound {
+  color: #ffc600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

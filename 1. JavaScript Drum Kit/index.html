@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="chaves">
+      <!-- data-key é uma forma alternativa a class quando temos uma tecla sendo apertada -->
+      <div data-key="65" class="chave">
+        <kbd>A</kbd>
+        <span class="sound">cihat</span>
+      </div>
+      <div data-key="83" class="chave">
+        <kbd>S</kbd>
+        <span class="sound">flam</span>
+      </div>
+      <div data-key="68" class="chave">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="chave">
+        <kbd>F</kbd>
+        <span class="sound">ophat</span>
+      </div>
+      <div data-key="71" class="chave">
+        <kbd>G</kbd>
+        <span class="sound">pdhat</span>
+      </div>
+      <div data-key="72" class="chave">
+        <kbd>H</kbd>
+        <span class="sound">rim</span>
+      </div>
+      <div data-key="74" class="chave">
+        <kbd>J</kbd>
+        <span class="sound">sdst</span>
+      </div>
+      <div data-key="75" class="chave">
+        <kbd>K</kbd>
+        <span class="sound">snr</span>
+      </div>
+      <div data-key="76" class="chave">
+        <kbd>L</kbd>
+        <span class="sound">snroff</span>
+      </div>
+    </div>
+
+    <audio data-key="65" src="./sounds/cihat.wav"></audio>
+    <audio data-key="83" src="./sounds/flam.wav"></audio>
+    <audio data-key="68" src="./sounds/kick.wav"></audio>
+    <audio data-key="70" src="./sounds/ophat.wav"></audio>
+    <audio data-key="71" src="./sounds/pdhat.wav"></audio>
+    <audio data-key="72" src="./sounds/rim.wav"></audio>
+    <audio data-key="74" src="./sounds/sdst.wav"></audio>
+    <audio data-key="75" src="./sounds/snr.wav"></audio>
+    <audio data-key="76" src="./sounds/snroff.wav"></audio>
+
+    <script>
+      // Adiciona um listener a página,
+      // addEventListener(nome_evento, o que fazer)
+      window.addEventListener("keydown", function (e) {
+        // Define a div audio que foi selecionada
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        // Seleciona a div em que ocorreu o evento
+        const chave = document.querySelector(`.chave[data-key="${e.keyCode}"]`);
+        // Se for utilizada uma tecla não cadastrada returna nada
+        if (!audio) return;
+        // Faz com que o audio pare se outra tecla for digita
+        audio.currentTime = 0;
+        // Toca o audio
+        audio.play();
+        // Adiciona a classe apertar
+        chave.classList.add("apertar");
+      });
+      function removeApertar(e) {
+        if (e.propertyName !== "transform") return;
+        this.classList.remove("apertar");
+      }
+      // Chaves tem todos os elementos
+      const chaves = document.querySelectorAll(".chave");
+      // Adiciona um evento a todos os elementos de chaves
+      chaves.forEach((chave) =>
+        chave.addEventListener("transitionend", removeApertar)
+      );
+    </script>
+  </body>
+</html>
